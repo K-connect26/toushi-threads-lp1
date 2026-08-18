@@ -1,0 +1,218 @@
+<!--
+===========================================================
+★ カスタマイズはここだけ！★
+
+【公式LINEのリンクを変える方法】
+このファイルの中の「LINE_URL_HERE」を、
+あなたの公式LINEの「友だち追加リンク」に書き換えてください。
+（index.html の LINE_URL_HERE と同じものでOKです）
+
+【送信されたデータの確認方法】
+Googleフォーム（LINE登録前アンケート）の「回答」タブ、
+または紐づけたスプレッドシートで確認できます。
+===========================================================
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登録前に少しだけ教えてください｜投資の気になること まるっと解決</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --coral:    #d9724a;
+    --coral-dp: #b85a37;
+    --gold:     #e8c25a;
+    --cream:    #fbf2e4;
+    --cream2:   #fdf8ef;
+    --navy:     #33302e;
+    --text:     #4a453f;
+    --soft:     #8a8378;
+    --white:    #ffffff;
+    --border:   #ece2d3;
+  }
+
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴシック ProN', 'Hiragino Sans', sans-serif;
+    color: var(--navy);
+    background: linear-gradient(160deg, var(--cream) 0%, var(--cream2) 100%);
+    line-height: 1.8;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    max-width: 440px;
+    width: 100%;
+    padding: 36px 26px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+
+  .badge {
+    display: block;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--coral-dp);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 7px 16px; border-radius: 30px; margin: 0 auto 18px;
+    width: fit-content;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: clamp(18px, 5vw, 21px);
+    font-weight: 800;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: var(--navy);
+  }
+
+  .lead {
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--text);
+    margin-bottom: 26px;
+    line-height: 1.8;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  label .req { color: var(--coral); margin-left: 4px; font-size: 11px; }
+
+  .field { margin-bottom: 18px; }
+
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 13px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--cream2);
+    color: var(--navy);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type="text"]:focus, input[type="email"]:focus {
+    border-color: var(--coral);
+    background: var(--white);
+  }
+
+  .error-msg {
+    font-size: 12.5px;
+    color: var(--coral-dp);
+    margin: -8px 0 18px;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+
+  .submit-btn {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, var(--coral), var(--coral-dp));
+    color: #fff; border: none; padding: 17px 20px;
+    font-size: 15.5px; font-family: inherit; font-weight: 800; letter-spacing: 0.03em;
+    border-radius: 50px; cursor: pointer;
+    box-shadow: 0 6px 20px rgba(217,114,74,0.35);
+    margin-top: 6px;
+  }
+  .submit-btn:disabled { opacity: 0.6; cursor: default; }
+
+  .note {
+    font-size: 11.5px;
+    color: var(--soft);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <p class="badge">あと少しで完了です</p>
+  <h1>登録前に、少しだけ<br>教えてください</h1>
+  <p class="lead">
+    ガイドをお届けするために必要な情報です。<br>
+    入力後、公式LINEの登録画面に進みます。
+  </p>
+
+  <form id="mainForm" novalidate>
+    <div class="field">
+      <label for="name">お名前（フルネーム）<span class="req">必須</span></label>
+      <input type="text" id="name" autocomplete="name" placeholder="例）山田 花子">
+    </div>
+    <div class="field">
+      <label for="referrer">紹介者名（Threads名）<span class="req">必須</span></label>
+      <input type="text" id="referrer" placeholder="例）@toushi_123">
+    </div>
+    <div class="field">
+      <label for="email">メールアドレス<span class="req">必須</span></label>
+      <input type="email" id="email" autocomplete="email" placeholder="例）example@mail.com">
+    </div>
+    <p class="error-msg" id="errorMsg">すべての項目を、正しく入力してください。</p>
+
+    <button type="submit" class="submit-btn" id="submitBtn">送信して公式LINEへ進む</button>
+  </form>
+
+  <p class="note">入力内容は公式LINEへのご案内以外には使用しません。</p>
+</div>
+
+<!-- Googleフォームへ裏側で送信するための非表示フォーム -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+<form id="gform"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSdLfks_EkyitqlSbnzszefv5csuQ8jrHsjlNFDrk281i0tHww/formResponse"
+      method="POST" target="hidden_iframe" style="display:none;">
+  <input type="text" name="entry.903919357" id="gf-name">
+  <input type="text" name="entry.178593758" id="gf-referrer">
+  <input type="email" name="emailAddress" id="gf-email">
+</form>
+
+<script>
+  var LINE_URL = "https://lin.ee/sTk7gVq";
+
+  document.getElementById('mainForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name = document.getElementById('name').value.trim();
+    var referrer = document.getElementById('referrer').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var errorMsg = document.getElementById('errorMsg');
+
+    if (!name || !referrer || !email || !emailOk) {
+      errorMsg.classList.add('show');
+      return;
+    }
+    errorMsg.classList.remove('show');
+
+    document.getElementById('gf-name').value = name;
+    document.getElementById('gf-referrer').value = referrer;
+    document.getElementById('gf-email').value = email;
+    document.getElementById('gform').submit();
+
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = '送信中です…';
+
+    setTimeout(function () {
+      window.location.href = LINE_URL;
+    }, 700);
+  });
+</script>
+
+</body>
+</html>
